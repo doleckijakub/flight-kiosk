@@ -19,33 +19,33 @@ private:
 
     Flyer(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
 
-    static std::shared_ptr<Flyer> create(const std::string& firstName, const std::string& lastName, const std::string& passportNumber);
-    
-    friend class FlyerRegistry;
-
 public:
+
+    using ref_t = std::shared_ptr<Flyer>;
+
+    class Registry {
+    private:
+
+        std::vector<ref_t> flyers;
+
+        static Registry &get_instance();
+
+        void add_impl(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
+        ref_t get_impl(const std::string &passportNumber);
+
+    public:
+
+        static void add(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
+        static ref_t get(const std::string &passportNumber);
+
+    };
+
+    static ref_t create(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
 
     LoyaltyStatus getLoyaltyStatus();
     void upgradeStatus(LoyaltyStatus status);
 
     void printInfo();
-
-};
-
-class FlyerRegistry {
-private:
-
-    std::vector<std::shared_ptr<Flyer>> flyers;
-
-    static FlyerRegistry &get_instance();
-
-    void add_impl(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
-    std::shared_ptr<Flyer> get_impl(const std::string &passportNumber);
-
-public:
-
-    static void add(const std::string &firstName, const std::string &lastName, const std::string &passportNumber);
-    static std::shared_ptr<Flyer> get(const std::string &passportNumber);
 
 };
 

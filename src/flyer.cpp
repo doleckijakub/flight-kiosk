@@ -31,20 +31,20 @@ void Flyer::printInfo() {
 
 /// registry
 
-FlyerRegistry &FlyerRegistry::get_instance() {
-    static FlyerRegistry registry;
+Flyer::Registry &Flyer::Registry::get_instance() {
+    static Flyer::Registry registry;
     return registry;
 }
 
-void FlyerRegistry::add_impl(const std::string &firstName, const std::string &lastName, const std::string &passportNumber) {
+void Flyer::Registry::add_impl(const std::string &firstName, const std::string &lastName, const std::string &passportNumber) {
     flyers.push_back(Flyer::create(firstName, lastName, passportNumber));
 }
 
-void FlyerRegistry::add(const std::string &firstName, const std::string &lastName, const std::string &passportNumber) {
+void Flyer::Registry::add(const std::string &firstName, const std::string &lastName, const std::string &passportNumber) {
     get_instance().add_impl(firstName, lastName, passportNumber);
 }
 
-std::shared_ptr<Flyer> FlyerRegistry::get_impl(const std::string &passportNumber) {
+Flyer::ref_t Flyer::Registry::get_impl(const std::string &passportNumber) {
     for (auto &flyer : flyers) {
         if (flyer->passportNumber == passportNumber) {
             return flyer;
@@ -54,6 +54,6 @@ std::shared_ptr<Flyer> FlyerRegistry::get_impl(const std::string &passportNumber
     return nullptr;
 }
 
-std::shared_ptr<Flyer> FlyerRegistry::get(const std::string &passportNumber) {
+Flyer::ref_t Flyer::Registry::get(const std::string &passportNumber) {
     return get_instance().get_impl(passportNumber);
 }

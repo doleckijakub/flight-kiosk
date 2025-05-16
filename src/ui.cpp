@@ -1,5 +1,8 @@
 #include "ui.hpp"
 
+#include <iostream>
+#include <cstdlib>
+
 void UI::start(Window window) {
     set_window(window);
     get_instance().run();
@@ -24,6 +27,8 @@ UI &UI::get_instance() {
 void UI::run() {
     while (running) {
         current_window();
+
+        std::cout << std::endl << "############################" << std::endl << std::endl;
     }
 }
 
