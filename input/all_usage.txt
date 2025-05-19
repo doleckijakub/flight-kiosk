@@ -1,0 +1,48 @@
+# register
+1
+1
+ABC001
+Walter
+White
+
+# get walter
+1
+2
+ABC001
+
+# upgrade
+1
+3
+ABC001
+3
+
+# jesse
+1
+1
+ABC002
+Jesse
+Pinkman
+
+# get pinkman
+1
+2
+ABC002
+
+# add skyler
+1
+1
+ABC003
+Skyler
+White
+
+# book for whites
+2
+2
+3
+Lublin
+
+# book for jesse
+2
+2
+3
+Lubblin
